@@ -1,0 +1,26 @@
+
+optimizer: auto         # optimizer selection: 'auto' lets the training script pick (e.g., SGD or Adam)
+lr0: 0.01               # initial learning rate (start of training)
+lrf: 0.01               # final learning rate multiplier for cosine decay (value at end = lr0 * lrf if used)
+momentum: 0.937         # SGD momentum coefficient (if using SGD)
+weight_decay: 0.0005    # L2 regularization (weight decay) strength
+warmup_epochs: 3.0      # number of epochs to linearly warm up learning rate / other warmup params
+warmup_momentum: 0.8    # starting momentum value during warmup (interpolated to 'momentum')
+warmup_bias_lr: 0.1     # starting learning rate for biases during warmup
+box: 7.5                # weight (gain) for bounding box regression loss term
+cls: 0.5                # weight for classification loss term
+dfl: 1.5                # weight for Distribution Focal Loss (DFL) term
+
+hsv_h: 0.015            # hue jitter fraction (max hue change; small to avoid changing jersey colors)
+hsv_s: 0.7              # saturation jitter fraction (affects color saturation variations)
+hsv_v: 0.4              # value/brightness jitter fraction (affects brightness / night scenes)
+degrees: 0.0            # max rotation in degrees (0 = no rotation)
+translate: 0.1          # max translation as fraction of image size (horizontal/vertical shifts)
+scale: 0.5              # scale jitter (zoom in/out range factor)
+shear: 0.0              # shear angle in degrees for affine transform
+perspective: 0.0        # perspective transform magnitude (0 = disabled)
+flipud: 0.0             # probability of vertical (up-down) flip
+fliplr: 0.5             # probability of horizontal (left-right) flip
+mosaic: 1.0             # probability or strength of Mosaic augmentation (1 = always enabled)
+mixup: 0.1              # probability/strength of MixUp augmentation (combines images)
+copy_paste: 0.1         # probability/strength of Copy-Paste augmentation (adds extra object instances)

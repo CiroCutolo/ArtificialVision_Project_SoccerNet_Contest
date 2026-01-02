@@ -1,0 +1,19 @@
+dataset:
+  pred_root: C:/Users/ciroc/Desktop/AV_project/evaluation/soccana_test_640_smart_filter
+  gt_root:   C:/Users/ciroc/Desktop/AV_project/data/datasets/SoccerNet/tracking/test1
+
+video:
+  width: 1920
+  height: 1080
+
+roi:
+  json: C:/Users/ciroc/Desktop/AV_project/data/rois/roi.json
+
+patterns:
+  pred_tracking: "C:/Users/ciroc/Desktop/AV_project/evaluation/soccana_test_640_smart_filter/tracking_*.txt"
+  gt_tracking: "C:/Users/ciroc/Desktop/AV_project/data/datasets/SoccerNet/tracking/test1/*/gt/gt.txt"
+output:
+  pred_behavior_dir: C:/Users/ciroc/Desktop/AV_project/evaluation/soccana_test_640_smart_filter
+
+naming:
+  team_id: 1   

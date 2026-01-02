@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+.venv/
+.env
+
+# Datasets & Heavy Data
+data/
+*.jpg
+*.png
+*.mp4
+*.avi
+
+# Pesi dei modelli
+*.pt
+*.pth
+*.onnx
+
+# IDE & OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs & Results
+runs/
+*.log
+src/training/runs/

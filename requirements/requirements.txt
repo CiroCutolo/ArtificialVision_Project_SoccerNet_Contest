@@ -1,0 +1,24 @@
+# Core Data & Utils
+numpy
+pandas
+scipy
+tqdm
+PyYAML
+requests
+
+# Computer Vision & Plotting
+opencv-python
+matplotlib
+
+# Deep Learning (Core)
+torch
+torchvision
+
+# Object Detection & Tracking Modules
+ultralytics
+boxmot
+
+# Tracking Dependencies (BoxMOT)
+lapx
+filterpy
+scikit-learn
