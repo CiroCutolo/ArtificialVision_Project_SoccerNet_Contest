@@ -1,19 +1,19 @@
-# PROGETTO ARTIFICIAL VISION - A.A. 2025/2026
-# STUDENTI: [Ciro Cutolo, Federica Celano] - MATRICOLA: [0622702532, 0622702581]
 # TITOLO: Multi-Object Tracking & Behavior Analysis for Soccer
+### PROGETTO ARTIFICIAL VISION - A.A. 2025/2026
+## STUDENTI: [Ciro Cutolo, Federica Celano] - MATRICOLA: [0622702532, 0622702581]
 
 ISTRUZIONI PER L'INSTALLAZIONE E L'ESECUZIONE (SETUP DI GARA)
 
 --------------------------------------------------------------------------------
-# 1. REQUISITI DI SISTEMA
+## 1. REQUISITI DI SISTEMA
 Le dipendenze necessarie sono elencate nel file 'requirements.txt'.
 
 Per installare le dipendenze:
     pip install -r requirements.txt
 
-# 2. ORGANIZZAZIONE CARTELLE
+## 2. ORGANIZZAZIONE CARTELLE
 La cartella consegnata è strutturata come segue:
-/
+
 ├── src/                
 ├── configs/        
 ├── data/  
@@ -21,8 +21,7 @@ La cartella consegnata è strutturata come segue:
 ├── README.txt
 └── setup.py
 
---------------------------------------------------------------------------------
-# 3. CONFIGURAZIONE
+## 3. CONFIGURAZIONE
 Prima di eseguire l'inferenza, è necessario indicare al sistema dove si trovano
 le sequenze video di test.
 
@@ -46,7 +45,7 @@ detection:
 tracking:
   reid_model_path: "C:/.../AV_project/data/models/weights/tracker/osnet_x1_0_soccernet.pt"
   
-# 4. ESECUZIONE INFERENZA
+## 4. ESECUZIONE INFERENZA
 Una volta configurato il percorso nel file yaml, tramite terminale raggiungere la cartella in cui è situato il file d'inferenza ed eseguirlo:
 
     python ./inference.py
@@ -56,7 +55,7 @@ Il sistema:
 2. Leggerà le sequenze dal percorso indicato nel config.
 3. Genererà i file di output nella cartella 'results/'.
 
-# 5. FORMATO OUTPUT
+## 5. FORMATO OUTPUT
 I risultati saranno salvati conformemente alle specifiche di gara:
 - Tracking: tracking_K_XX.txt (es. tracking_149_01.txt)
 - Behavior: behavior_K_XX.txt (es. behavior_149_01.txt)
