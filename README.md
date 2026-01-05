@@ -9,7 +9,7 @@ ISTRUZIONI PER L'INSTALLAZIONE E L'ESECUZIONE (SETUP DI GARA)
 Le dipendenze necessarie sono elencate nel file 'requirements.txt'.
 
 Per installare le dipendenze:
-    pip install -r requirements.txt
+- pip install -r requirements.txt
 
 ## 2. ORGANIZZAZIONE CARTELLE
 La cartella consegnata è strutturata come segue:
@@ -18,7 +18,7 @@ La cartella consegnata è strutturata come segue:
 ├── configs/        
 ├── data/  
 ├── requirements/           
-├── README.txt
+├── README.txt/
 └── setup.py
 
 ## 3. CONFIGURAZIONE
@@ -36,14 +36,14 @@ paths:
 
 Inoltre, sempre nel file di configurazione, è necessario specificare i pesi del detector e del ReID module, 
 e il path dell'ouput dell'inferenza:
-paths:
-  inference_output_path: "C:/.../AV_project/data/models/evaluation/soccana_1cls_640_smoothed"
+- paths:
+    inference_output_path: "C:/.../AV_project/data/models/evaluation/soccana_1cls_640_smoothed"
 ...
-detection:
-  model_path: "C:/.../AV_project/data/models/weights/detector/best_50_epochs_soccana_1cls.pt" 
+- detection:
+    model_path: "C:/.../AV_project/data/models/weights/detector/best_50_epochs_soccana_1cls.pt" 
 ...
-tracking:
-  reid_model_path: "C:/.../AV_project/data/models/weights/tracker/osnet_x1_0_soccernet.pt"
+- tracking:
+    reid_model_path: "C:/.../AV_project/data/models/weights/tracker/osnet_x1_0_soccernet.pt"
   
 ## 4. ESECUZIONE INFERENZA
 Una volta configurato il percorso nel file yaml, tramite terminale raggiungere la cartella in cui è situato il file d'inferenza ed eseguirlo:
@@ -53,7 +53,7 @@ Una volta configurato il percorso nel file yaml, tramite terminale raggiungere l
 Il sistema:
 1. Caricherà i pesi dai percorsi relativi in 'weights/'.
 2. Leggerà le sequenze dal percorso indicato nel config.
-3. Genererà i file di output nella cartella 'results/'.
+3. Genererà i file di output nella cartella specificata.
 
 ## 5. FORMATO OUTPUT
 I risultati saranno salvati conformemente alle specifiche di gara:
