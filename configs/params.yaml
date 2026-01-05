@@ -4,7 +4,6 @@ lr0: 0.01               # initial learning rate (start of training)
 lrf: 0.01               # final learning rate multiplier for cosine decay (value at end = lr0 * lrf if used)
 momentum: 0.937         # SGD momentum coefficient (if using SGD)
 weight_decay: 0.0005    # L2 regularization (weight decay) strength
-warmup_epochs: 3.0      # number of epochs to linearly warm up learning rate / other warmup params
 warmup_momentum: 0.8    # starting momentum value during warmup (interpolated to 'momentum')
 warmup_bias_lr: 0.1     # starting learning rate for biases during warmup
 box: 7.5                # weight (gain) for bounding box regression loss term

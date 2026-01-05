@@ -15,18 +15,35 @@ naming:
 
 detection:
   model_path: "C:/Users/ciroc/Desktop/AV_project/data/models/weights/detector/best_50_epochs_soccana_1cls.pt"  
-  conf_thres: 0.50
+  conf_thres: 0.40
 
 tracking:
   tracker_type: "botsort"
   reid_model_path: "C:/Users/ciroc/Desktop/AV_project/data/models/weights/tracker/osnet_x1_0_soccernet.pt" 
   track_buffer: 120 
   match_thresh: 0.8
-  track_high_thresh: 0.6
+  track_high_thresh: 0.4
   track_low_thresh: 0.1
-  new_track_thresh: 0.7
+  new_track_thresh: 0.80
   appearance_thresh: 0.15
   proximity_thresh: 0.5
   cmc_method: "ecc"
   iou_threshold: 0.3
   reid: True
+
+# vecchia config:
+# conf_thres: 0.50
+
+# tracking:
+#   tracker_type: "botsort"
+#   reid_model_path: "C:/Users/ciroc/Desktop/AV_project/models/weights/tracker/osnet_x1_0_soccernet.pt"
+#   track_buffer: 120
+#   match_thresh: 0.8
+#   track_high_thresh: 0.6
+#   track_low_thresh: 0.1
+#   new_track_thresh: 0.7
+#   appearance_thresh: 0.15
+#   proximity_thresh: 0.5
+#   cmc_method: "ecc"
+#   iou_threshold: 0.3
+#   reid: True

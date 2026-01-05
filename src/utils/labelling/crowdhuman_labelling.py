@@ -110,7 +110,6 @@ def convert_crowdhuman_to_yolo(odgt_path: str, img_folder: str, output_folder: s
     logger.info(f"[ METRICS | Output directory: {out_dir} ]")
 
 if __name__ == "__main__":
-    # Configuration based on user context
     ODGT_PATH = 'annotation_val.odgt'
     IMG_FOLDER = 'C:/Users/ciroc/Desktop/AV_project/data/datasets/CrowdHuman/images/'
     OUTPUT_FOLDER = 'C:/Users/ciroc/Desktop/AV_project/data/datasets/CrowdHuman/labels/'

@@ -52,8 +52,8 @@ class PlayerDetector:
             conf=self.conf_thres,
             augment=True,
             rect=False,
-            iou=0.5,
-            imgsz=640,
+            iou=0.6,
+            imgsz=1280,
             classes=[0]
         )[0]
 

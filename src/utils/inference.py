@@ -62,7 +62,7 @@ def run_inference():
 
     dataset_root = Path(cfg["paths"]["dataset_root"]) if "paths" in cfg else Path(r"C:/Users/ciroc/Desktop/AV_project/data/datasets/SoccerNet")
     input_dir = dataset_root / "tracking/test" 
-    output_dir = Path("C:/Users/ciroc/Desktop/AV_project/data/models/evaluation/soccana_1cls_640_smoothed")
+    output_dir = Path("C:/Users/ciroc/Desktop/AV_project/data/models/evaluation/soccana_1cls_640_smoothed_v3")
     output_dir.mkdir(parents=True, exist_ok=True)
     
     team_id = int(cfg["naming"]["team_id"])

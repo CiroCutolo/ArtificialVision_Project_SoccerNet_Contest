@@ -1,7 +1,6 @@
 import logging
 from typing import List, Dict, Tuple, Any
 
-# Configure logging
 logger = logging.getLogger("BoxSmoother")
 
 class OnlineBoxSmoother:

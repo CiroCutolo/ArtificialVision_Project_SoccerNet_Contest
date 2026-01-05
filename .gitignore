@@ -15,6 +15,10 @@ data/
 *.mp4
 *.avi
 
+data.py
+renaming.py
+sportsmot_reid_dataset.py
+
 # Pesi dei modelli
 *.pt
 *.pth

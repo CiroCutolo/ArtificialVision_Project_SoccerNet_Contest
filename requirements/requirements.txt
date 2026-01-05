@@ -22,3 +22,6 @@ boxmot
 lapx
 filterpy
 scikit-learn
+
+SoccerNet
+trackeval

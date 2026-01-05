@@ -5,7 +5,7 @@ import re
 import sys
 import yaml
 from pathlib import Path
-from src.modules.behavior_analyzer import BehaviorAnalyzer
+from modules.behavior_analyzer import BehaviorAnalyzer
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger("BehaviorBatch")
@@ -82,7 +82,7 @@ class BatchProcessor:
         if m: return int(m.group(1))
         
         m = re.search(r"(\d+)", name)
-        return int(m.group(1)) if m else 0
+        return int(m.group(1))
 
     def run(self, stage: str = "both"):
         """Execute the batch processing based on the selected stage.
@@ -119,10 +119,13 @@ class BatchProcessor:
                 
                 if save_style == "inplace":
                     out_path = t_path.parent / f"behavior_{video_id}_{self.team_id:02d}.txt"
+                    out_path_general = t_path.parent / f"behavior_gt.txt"
                 else:
                     out_path = dest_dir / f"behavior_{video_id}_{self.team_id:02d}.txt"
+                    out_path_general = dest_dir / f"behavior_gt.txt"
                 
                 self.analyzer.save_results(out_path)
+                self.analyzer.save_results(out_path_general)
                 logger.info(f"[ {mode} | Processed Video {video_id} -> {out_path.name} ]")
 
 def main():

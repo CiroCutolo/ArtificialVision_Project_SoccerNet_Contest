@@ -6,7 +6,8 @@ import torchreid
 from torchreid import utils
 from pathlib import Path
 from typing import Optional, Dict, Any
-from src.modules.soccernet_reid_dataset import SoccerNetReIDDataset
+from modules.soccernet_reid_dataset import SoccerNetReIDDataset
+from modules.sportsmot_reid_dataset import SportsMOTReIDDataset
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger("AV_project_reid_trainer")
@@ -17,7 +18,7 @@ class ReIDTrainer:
     def __init__(self, 
                  dataset_path: str, 
                  save_dir: str, 
-                 model_arch: str = 'osnet_x1_0',
+                 model_arch: str = 'osnet_ain_x1_0',
                  device_id: int = 0):
         """Initialize the ReID trainer configurations.
 
@@ -43,10 +44,11 @@ class ReIDTrainer:
         logger.info(f"[ DEBUG | Output Directory: {self.save_dir} ]")
 
     def setup_data(self, 
-                   batch_size: int = 128, 
-                   height: int = 256, 
-                   width: int = 128, 
-                   workers: int = 8) -> None:
+                    batch_size: int = 128,
+                    dataset_name: str = '', 
+                    height: int = 256, 
+                    width: int = 128, 
+                    workers: int = 8) -> None:
         """Initialize the ImageDataManager.
 
         Args:
@@ -60,13 +62,13 @@ class ReIDTrainer:
         try:
             self.datamanager = torchreid.data.ImageDataManager(
                 root=self.dataset_path,
-                sources='SoccerNetReIDDataset', 
-                targets='SoccerNetReIDDataset',
+                sources=dataset_name, 
+                targets=dataset_name,
                 height=height,
                 width=width,
                 batch_size_train=batch_size,
                 batch_size_test=100, 
-                transforms=['random_flip', 'random_crop', 'random_erase'], 
+                transforms=['random_flip', 'random_crop', 'random_erase', 'color_jitter'], 
                 workers=workers,
                 use_gpu=(self.device.type == 'cuda')
             )
@@ -74,7 +76,7 @@ class ReIDTrainer:
             num_train = self.datamanager.num_train_pids
             num_query = len(self.datamanager.test_loader['SoccerNetReIDDataset']['query'].dataset)
             num_gallery = len(self.datamanager.test_loader['SoccerNetReIDDataset']['gallery'].dataset)
-            
+
             logger.info(f"[ INFO | Dataset Loaded Successfully ]")
             logger.info(f"[ INFO | Identities: {num_train} | Query: {num_query} | Gallery: {num_gallery} ]")
 
@@ -99,8 +101,16 @@ class ReIDTrainer:
                 name=self.model_arch,
                 num_classes=self.datamanager.num_train_pids,
                 loss='triplet',
-                pretrained=True
+                pretrained=False
             )
+
+            weight_path = 'C:/Users/ciroc/Desktop/AV_project/data/models/weights/tracker/osnet_ain_x1_0_msmt17.pt'
+            if os.path.exists(weight_path):
+                logger.info(f"[ INFO | Loading pre-trained weights from: {weight_path} ]")
+                torchreid.utils.load_pretrained_weights(self.model, weight_path)
+            else:
+                logger.warning(f"[ WARN | Weight file {weight_path} not found! Starting from scratch random init. ]")
+
             self.model.to(self.device)
 
             self.optimizer = torchreid.optim.build_optimizer(
@@ -199,13 +209,13 @@ def main():
     DATASET_PATH = "C:/Users/ciroc/Desktop/AV_project/data/datasets/ReidCrop/SoccerNet_Crops_for_REID"
     MODEL_ARCH = 'osnet_x1_0'
     BATCH_SIZE = 128
-    MAX_EPOCH = 10
+    MAX_EPOCH = 60
     LR = 0.0003
     DEVICE_ID = 0
     
     RUN_NAME = f'soccernet_{MODEL_ARCH}'
     SAVE_DIR = f'C:/Users/ciroc/Desktop/AV_project/src/training/runs/tracker/{RUN_NAME}'
-    EXPORT_PATH = f"models/weights/reid/{MODEL_ARCH}_soccernet.pt"
+    EXPORT_PATH = f"C:/Users/ciroc/Desktop/AV_project/data/models/weights/tracker/{MODEL_ARCH}_soccernet.pt"
 
     trainer = ReIDTrainer(
         dataset_path=DATASET_PATH,
@@ -228,7 +238,7 @@ def main():
 
     trainer.train(
         max_epoch=MAX_EPOCH,
-        eval_freq=1
+        eval_freq=10
     )
 
     trainer.export(export_path=EXPORT_PATH)
