@@ -25,3 +25,5 @@ scikit-learn
 
 SoccerNet
 trackeval
+
+-e ./
